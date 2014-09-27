@@ -1,4 +1,4 @@
-# Delayed Lock
+# Delayed Lock [![Build Status](https://img.shields.io/travis/raghums/delayed-lock/master.svg)](https://travis-ci.org/raghums/delayed-lock)
 Provides a Lock object that can be acquired only after a pre-configured delay after it is released. The Lock object is created as follows:
 ```javascript
 var Lock = require('delayed_lock');
