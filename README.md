@@ -13,12 +13,34 @@ var Lock = require('delayed-lock');
 var lock = Lock.create();
 ```
 
-
-
 The following APIs are available on the lock created above:
 
 1. `acquire(callback)` - Acquire the lock. The `key` is passed to the callback of this API.
 1. `release(key)` - Release the lock. The `key` got during the `acquire` call should be passed as the argument to this call. If the `key` does not match the key of the lock then this call will be a `noop`.
+
+```javascript
+/** file: test.js */
+var lock = require('delayed-lock').create();
+
+lock.acquire(function (key) {
+  //do something useful
+  console.log("--- 1 ---");
+  lock.release(key);
+})
+
+lock.acquire(function (key) {
+  // executed only after 1s delay (configurable) after the lock is released by previous call
+  console.log("--- 2 ---");
+  lock.release(key);
+})
+```
+Output
+```bash
+$> node test.js
+--- 1 ---
+--- 2 ---
+```
+The second line (--- 2 ---) is printed after at-least after `delay` millis (1000 ms by default) after printing the first line (--- 1 ---)
 
 The lock can be in one of the following states:
 
