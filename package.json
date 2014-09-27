@@ -2,7 +2,7 @@
   "name": "delayed-lock",
   "version": "0.0.1",
   "description": "A 'lock' that can be acquired only after 'x' ms after it is released.",
-  "main": "index.js",
+  "main": "lib/delayed_lock",
   "directories": {
     "example": "examples",
     "test": "test"
